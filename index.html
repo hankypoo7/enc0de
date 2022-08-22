@@ -1,0 +1,536 @@
+<!-- Code is Copyright Henry Lu 2022 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="A clicker game about improving this game's code"
+    />
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-H7CJFEX16W"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-H7CJFEX16W");
+    </script> -->
+
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <script>
+      navigator.serviceWorker.register("sw.js");
+    </script>
+    <title>Enc0de</title>
+  </head>
+  <body>
+    <script src="chs.js"></script>
+    <script src="core.js"></script>
+    <noscript>You need JavaScript enabled to play this game</noscript>
+
+    <!-- Tutorial -->
+    <dialog open="true">
+      <nav>
+        <img
+          src="https://img.icons8.com/color/48/user-manual.png"
+          alt="tutorial"
+        />
+        <h1>Tutorial</h1>
+      </nav>
+
+      <hr />
+      <span class="tutorial-text">
+        Welcome to enc0de! In this game, you will improve this game's code
+        incrementally.</span
+      ><br />
+      <img
+        src="https://img.icons8.com/color/48/close-window.png"
+        alt="close"
+        class="tutorial-close"
+      />
+      <button class="tutorial-before">&lt;</button>
+      <span class="tutorial-page">0</span> out of 9
+      <button class="tutorial-next">&gt;</button>
+    </dialog>
+
+    <!-- Overlay for the tutorial -->
+    <div class="overlay"></div>
+
+    <!-- Button to open the tutorial -->
+    <img
+      src="https://img.icons8.com/color/48/refer-to-manual.png"
+      alt="open tutorial"
+      class="tutorial-button"
+    />
+
+    <!-- Setting menu -->
+    <aside class="settings">
+      <aside class="dark-mode-button">
+        <img
+          src="https://img.icons8.com/color/32/sun--v1.png"
+          class="hidden"
+          alt="sun"
+        />
+        <img
+          src="https://img.icons8.com/color/32/moon-satellite.png"
+          alt="moon"
+        />
+        <input type="button" value="Dark mode" />
+      </aside>
+      <hr class="settings-hr" />
+      <section>
+        <h1>
+          <img
+            src="https://img.icons8.com/color/48/save--v1.png"
+            class="setting-header"
+            alt="save"
+          />Save
+        </h1>
+        <button class="save" onclick="save()">Save Manually</button>
+        <button class="wipe" onclick="wipeSave()">Delete Save</button>
+        <br />
+        <button class="save-file" onclick="saveFile()">Save to File</button>
+        <button class="load-file" onclick="loadFile()">Load from File</button>
+      </section>
+      <hr class="settings-hr" />
+      <a
+        href="https://play.google.com/store/apps/details?id=app.netlify.enc0de&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+        target="_blank"
+        ><img
+          alt="Get it on Google Play"
+          src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+          style="width: 250px"
+      /></a>
+      <p class="copyright">
+        Google Play and the Google Play logo are trademarks of Google LLC.<br />
+        &copy; Henry Lu 2022. All rights reserved<br />
+        Icons by
+        <a target="_blank" href="https://icons8.com/" class="copyright-link"
+          >Icons8</a
+        >
+      </p>
+    </aside>
+
+    <!-- Button to open the setting menu -->
+    <img
+      src="https://img.icons8.com/color/48/settings--v1.png"
+      class="settings-icon"
+      onclick="toggleSettings()"
+      alt="settings"
+    />
+
+    <!-- Golden code -->
+    <aside class="goldenCode"></aside>
+
+    <div class="content">
+      <!-- Display -->
+      <header>
+        <button class="click-button" onmouseup="clickButton()">Click</button>
+        <span class="clicks">0</span> clicks
+      </header>
+
+      <hr class="header-hr" />
+      <!-- Code -->
+      <main>
+        <section class="html-sect">
+          <nav>
+            <img
+              src="https://img.icons8.com/color/48/html-5--v1.png"
+              alt="html logo"
+            />
+            <h1>HTML</h1>
+          </nav>
+
+          <hr />
+          &lt;div<span class="container-upgrade hidden bootstrap-upgrade">
+            &lt;!-- class="container" --&gt;</span
+          >&gt;<br />
+          &lt;button
+          <span class="btn-upgrade hidden bootstrap-upgrade">
+            &lt;!-- class="btn" --&gt;</span
+          >
+          onclick="click()"&gt;Click&lt;/button&gt;<br />
+          Clicks: &lt;span class="clicks"&gt;0&lt;/span&gt;<br />
+          <p
+            class="upgrade html"
+            data-cost="1000"
+            data-replace='| Click +&lt;span class="click-plus"&gt;1&lt;/span&gt;'
+            data-eval='document.querySelector("header").innerHTML += ` | Click +<span class="click-plus">1</span>`'
+            data-unlock="click-plus-select"
+          >
+            &lt;!-- 1,000 clicks: --&gt;<br />
+            &lt;!-- | Click +&lt;span class="click-plus"&gt;1&lt;/span&gt;
+            --&gt;<br />
+          </p>
+          <p
+            class="upgrade html"
+            data-cost="1000000"
+            data-replace='| CPS: &lt;span class="cps"&gt;0&lt;/span&gt;'
+            data-eval='document.querySelector("header").innerHTML += ` | CPS: <span class="cps">0</span>`'
+            data-unlock="cps-select"
+          >
+            &lt;!-- 1,000,000 clicks: --&gt;<br />
+            &lt;!-- | CPS: &lt;span class="cps"&gt;0&lt;/span&gt; --&gt;<br />
+          </p>
+          &lt;/div&gt;<br />
+        </section>
+        <hr class="vertical-hr" />
+
+        <section class="js-sect">
+          <nav>
+            <img
+              src="https://img.icons8.com/color/48/javascript--v1.png"
+              alt="javascript logo"
+            />
+            <h1>JavaScript&nbsp;</h1>
+            <span class="with-jquery hidden">
+              <h1>with&nbsp;</h1>
+              <img
+                src="https://img.icons8.com/ios-filled/48/0e69af/jquery.png"
+                alt="jquery logo"
+              />
+              <h1>jQuery</h1>
+            </span>
+          </nav>
+
+          <hr />
+          let clicks = 0;<br />
+          function click() {<br />
+          <p class="upgrade click-level">clicks++; // 5 clicks<br /></p>
+          <p class="upgrade hidden cps-click-level">
+            // 1,000 clicks: clicks += 0.1 *
+            <span class="cps-click-num">1</span>;
+          </p>
+          <p
+            class="hidden upgrade click-plus-select html"
+            data-cost="1000"
+            data-replace='document.querySelector(".click-plus").textContent = <span class="click-plus-num">1</span>;'
+            data-eval="state.clickPlusBought = true"
+            data-js="true"
+            data-eval2="document.querySelector('.click-plus-num').textContent = state.add"
+            data-eval3="document.querySelector('.click-plus').textContent = state.add"
+          >
+            // 1,000 clicks<br />
+            // document.querySelector(".click-plus").textContent =
+            <span class="click-plus-num">1</span>;
+          </p>
+          <span class="jquery-upgrade queryselector jquery-add"
+            >document.querySelector</span
+          >(".clicks").<span class="jquery-upgrade textcontent jquery-add"
+            >textContent = clicks</span
+          >;
+          <br />
+          }<br /><br />
+          <p class="upgrade interval">
+            // 20 clicks<br />
+            // setInterval(function() {<br />
+            <span class="upgrade interval-level">// clicks++;<br /></span>
+            <span
+              class="hidden upgrade cps-select html"
+              data-cost="1000000"
+              data-replace='document.querySelector(".cps").textContent = <span class="cps-num">0</span>;'
+              data-eval="state.cpsBought = true"
+              data-js="true"
+              data-eval2="document.querySelector('.cps-num').textContent = Math.round(state.intervalAdd * (1000 / state.intervalWait))"
+              data-eval3="document.querySelector('.cps').textContent = Math.round(state.intervalAdd * (1000 / state.intervalWait))"
+              >// 1,000,000 clicks<br />
+              // document.querySelector(".cps").textContent =
+              <span class="cps-num">0</span>;</span
+            >
+            //
+            <span class="jquery-upgrade queryselector jquery-interval"
+              >document.querySelector</span
+            >(".clicks").<span
+              class="jquery-upgrade textcontent jquery-interval"
+              >textContent = clicks</span
+            >;<br />
+            <span class="upgrade interval-wait">// }, 1000)<br /></span>
+          </p>
+        </section>
+        <hr class="vertical-hr" />
+
+        <section class="css-sect">
+          <nav>
+            <img
+              src="https://img.icons8.com/color/48/css3.png"
+              alt="css logo"
+            />
+            <h1>CSS&nbsp;</h1>
+            <span class="with-bootstrap hidden">
+              <h1>with&nbsp;</h1>
+              <img
+                src="https://img.icons8.com/color/48/bootstrap.png"
+                alt="bootstrap logo"
+              />
+              <h1>Bootstrap</h1>
+            </span>
+          </nav>
+
+          <hr />
+          div {<br />
+          <span
+            class="upgrade css"
+            id="text-align"
+            data-cost="25"
+            data-eval="document.querySelector('header').style.textAlign = 'center'"
+            data-remove="25 clicks: "
+            data-unlock="font-family"
+            >/* 25 clicks: text-align: center; */</span
+          >
+          <span
+            class="upgrade css hidden"
+            id="font-family"
+            data-cost="50"
+            data-eval="document.querySelector('header').style.fontFamily = 'sans-serif'"
+            data-remove="50 clicks: "
+            data-unlock="font-size"
+            >/* 50 clicks: font-family: sans-serif; */</span
+          >
+          <span
+            class="upgrade css hidden"
+            id="font-size"
+            data-cost="100"
+            data-eval="document.querySelector('header').style.fontSize = '2rem'"
+            data-remove="100 clicks: "
+            data-unlock="margin"
+            >/* 100 clicks: font-size: 2rem; */</span
+          >
+          <span
+            class="upgrade css hidden"
+            id="margin"
+            data-cost="200"
+            data-eval="document.querySelector('header').style.margin = '0.5rem'"
+            data-remove="200 clicks: "
+            data-unlock="border"
+            >/* 200 clicks: margin: 0.5rem; */</span
+          >
+          <span
+            class="upgrade css hidden"
+            id="border"
+            data-cost="400"
+            data-eval="document.querySelector('header').style.border = 'solid 3px'"
+            data-remove="400 clicks: "
+            data-unlock="border-radius"
+            >/* 400 clicks: border: solid 3px; */</span
+          >
+          <span
+            class="upgrade css hidden"
+            id="border-radius"
+            data-cost="800"
+            data-eval="document.querySelector('header').style.borderRadius = '10px'"
+            data-remove="800 clicks: "
+            data-unlock="padding"
+            >/* 800 clicks: border-radius: 10px; */</span
+          >
+          <span
+            class="upgrade css hidden last"
+            id="padding"
+            data-cost="1600"
+            data-eval="document.querySelector('header').style.padding = '10px'"
+            data-remove="1,600 clicks: "
+            data-unlock=""
+            >/* 1,600 clicks: padding: 10px; */</span
+          ><br />
+          }<br />
+          button {<br />
+          <span
+            class="upgrade css"
+            id="font-size-button"
+            data-cost="3200"
+            data-eval="document.querySelector('.click-button').style.fontSize = '2rem'"
+            data-remove="3,200 clicks: "
+            data-unlock="button-active"
+            >/* 3,200 clicks: font-size: 2rem; */</span
+          >
+          <span
+            class="upgrade css hidden"
+            id="transition"
+            data-cost="51200"
+            data-eval="document.querySelector('.click-button').style.transition = 'transform 0.1s'"
+            data-remove="51,200 clicks: "
+            data-unlock="box-shadow"
+            >/* 51,200 clicks: transition: transform 0.1s; */</span
+          >
+          <span
+            class="upgrade css hidden"
+            id="box-shadow"
+            data-cost="102400"
+            data-eval="document.querySelector('.click-button').style.boxShadow = '0px 0px 20px black'"
+            data-remove="102,400 clicks: "
+            data-unlock="border-radius-button"
+            >/* 102,400 clicks: box-shadow: 0px 0px 20px black; */</span
+          >
+          <span
+            class="upgrade css hidden"
+            id="border-radius-button"
+            data-cost="204800"
+            data-eval="document.querySelector('.click-button').style.borderRadius = '20px'"
+            data-remove="204,800 clicks: "
+            data-unlock="margin-button"
+            >/* 204,800 clicks: border-radius: 20px */</span
+          >
+          <span
+            class="upgrade css hidden last"
+            id="margin-button"
+            data-cost="409600"
+            data-eval="document.querySelector('.click-button').style.margin = '10px'"
+            data-remove="409,600 clicks: "
+            data-unlock=""
+            >/* 409,600 clicks: margin: 10px */</span
+          ><br />
+          }
+          <br />
+          <p class="hidden" id="button_active">
+            button:active {<span
+              class="upgrade css hidden"
+              id="button-active"
+              data-cost="6400"
+              data-eval="document.styleSheets[0].insertRule('.click-button:active { transform: translateY(3px) }', 0)"
+              data-remove="6,400 clicks: "
+              data-unlock="button-hover"
+              >/* 6,400 clicks: transform: translateY(3px); */</span
+            >}<br />
+          </p>
+          <p class="hidden" id="button_hover">
+            button:hover {<span
+              class="upgrade css hidden"
+              id="button-hover"
+              data-cost="12800"
+              data-eval="document.styleSheets[0].insertRule('.click-button:hover { transform: translateY(-3px) }', 0)"
+              data-remove="12,800 clicks: "
+              data-unlock="button-focus"
+              >/* 12,800 clicks: transform: translateY(-3px); */</span
+            >}
+          </p>
+          <p class="hidden" id="button_focus">
+            button:focus {<span
+              class="upgrade css hidden"
+              id="button-focus"
+              data-cost="25600"
+              data-eval="document.styleSheets[0].insertRule('.click-button:focus { transform: scale(125%) }', 0)"
+              data-remove="25,600 clicks: "
+              data-unlock=""
+              >/* 25,600 clicks: transform: scale(125%); */</span
+            >}
+          </p>
+        </section>
+      </main>
+
+      <hr />
+
+      <!-- Achievements -->
+      <article>
+        <nav>
+          <img
+            src="https://img.icons8.com/color/48/console.png"
+            alt="console"
+          />
+          <h1>Console</h1>
+        </nav>
+
+        <hr />
+        &gt; const achievements = {zillion:
+        <span class="zillion-achievement">false</span>, gazillion:
+        <span class="gazillion-achievement">false</span>, bazillion:
+        <span class="bazillion-achievement">false</span>, jillion:
+        <span class="jillion-achievement">false</span>, bajillion:
+        <span class="bajillion-achievement">false</span>, squillion:
+        <span class="squillion-achievement">false</span>, mustmiljon:
+        <span class="mustmiljon-achievement">false</span>,<br />
+
+        &nbsp;&nbsp;second:
+        <span class="second-achievement">false</span>, millisecond:
+        <span class="millisecond-achievement">false</span>, microsecond:
+        <span class="microsecond-achievement">false</span>, nanosecond:
+        <span class="nanosecond-achievement">false</span>, picosecond:
+        <span class="picosecond-achievement">false</span>, femtosecond:
+        <span class="femtosecond-achievement">false</span>, attosecond:
+        <span class="attosecond-achievement">false</span>,<br />
+
+        &nbsp;&nbsp;clicks:
+        <span class="clicks-achievement">false</span>, clicker:
+        <span class="clicker-achievement">false</span>, clickers:
+        <span class="clickers-achievement">false</span>, clicking:
+        <span class="clicking-achievement">false</span>, clicked:
+        <span class="clicked-achievement">false</span>, clickable:
+        <span class="clickable-achievement">false</span>, clickstream:
+        <span class="clickstream-achievement">false</span>}<br />
+        &gt;
+        <span class="achievement"
+          >const achievementsUnlocked = () =>
+          Object.values(achievements).reduce((accumulator, achievement) =>
+          accumulator + achievement, 0)</span
+        ><br />
+        &gt; <span class="achievement-upgrade"></span>
+      </article>
+    </div>
+
+    <!-- Terminal -->
+    <footer>
+      <div class="up">
+        <img
+          src="https://img.icons8.com/color/48/circled-up-2--v1.png"
+          alt="up arrow"
+          class="up-arrow"
+          onclick="openTerminalWarning()"
+        />
+      </div>
+
+      <nav>
+        <img
+          src="https://img.icons8.com/color/48/command-line.png"
+          alt="terminal icon"
+        />
+        <h1>Terminal</h1>
+      </nav>
+      <hr class="terminal-hr hidden" />
+      <span class="terminal-text"></span>
+    </footer>
+
+    <!-- Terminal Warning -->
+    <aside class="terminal-warning">
+      <img
+        src="https://img.icons8.com/color/48/general-warning-sign.png"
+        alt="warning sign"
+      />
+      <h1>Warning</h1>
+      Opening the Terminal means <strong>deleting</strong> the program.<br />
+      <button class="terminal-cancel">Cancel</button>
+      <button class="terminal-proceed">Proceed</button>
+    </aside>
+<!--客服 开始-->
+<script src="//g8hh.github.io/static/js/jquery.min.js"></script>
+<link rel="stylesheet" href="//g8hh.github.io/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
+<script src="//g8hh.github.io/static/js/kf.js"></script>
+<!-- 客服 结束 -->
+<!--站长统计-->
+<div style="display: none">
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?6581389daf4dd6fe7dbb4d20fdcb52a6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+      </div>
+  </body>
+</html>

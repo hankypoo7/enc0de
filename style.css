@@ -1,0 +1,428 @@
+/* Code is Copyright Henry Lu 2022 */
+
+:root {
+  --box-shadow-color: black;
+}
+
+p,
+h1 {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+article {
+  margin-left: 0.5rem;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main,
+article,
+aside,
+footer,
+input[type="text"] {
+  font-family: Consolas, Monaco, Lucida Console, Liberation Mono,
+    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New;
+}
+
+main {
+  margin: 1rem;
+  display: flex;
+}
+
+main,
+article {
+  cursor: default;
+  user-select: none;
+}
+
+.upgrade {
+  text-decoration: underline wavy red;
+  -webkit-text-decoration: underline wavy red;
+  text-decoration-skip-ink: none;
+}
+
+.bootstrap-upgrade {
+  text-decoration: underline wavy purple;
+  -webkit-text-decoration: underline wavy purple;
+  text-decoration-skip-ink: none;
+}
+
+.upgrade,
+.bootstrap-upgrade,
+button,
+.settings-icon,
+.up-arrow,
+input[type="button"],
+.tutorial-button,
+.tutorial-close {
+  cursor: pointer;
+}
+
+.terminal-warning,
+.goldenCode {
+  position: absolute;
+}
+
+.terminal-warning button {
+  margin-top: 10px;
+}
+
+.terminal-proceed,
+.terminal-cancel {
+  border-radius: 0;
+  box-shadow: -2px 2px 0 var(--box-shadow-color);
+}
+
+.terminal-proceed:hover,
+.terminal-cancel:hover {
+  box-shadow: -1px 1px 0 var(--box-shadow-color);
+}
+
+.terminal-proceed:active,
+.terminal-cancel:active {
+  box-shadow: 0 0 0 var(--box-shadow-color);
+}
+
+.terminal-warning {
+  text-align: center;
+  left: calc(50vw - 476px / 2);
+  top: calc(50vh - 184px / 2);
+  transform: translateY(-25%);
+  margin: 0;
+  border: 2px solid black;
+  padding: 2rem;
+  transition: 0.5s;
+  opacity: 0;
+  display: none;
+}
+
+.settings,
+.terminal-warning,
+.overlay {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .settings,
+  .terminal-warning,
+  .overlay {
+    background-color: initial !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+input[type="text"] {
+  cursor: text;
+  position: relative;
+  top: 0;
+  background-color: black;
+  border: none;
+  font-size: 1rem;
+}
+
+.terminal-warning strong {
+  color: red;
+}
+
+.terminal-proceed {
+  border-color: red;
+  color: red;
+}
+
+.terminal-cancel {
+  border-color: green;
+}
+
+.terminal-cancel,
+footer,
+input[type="text"] {
+  color: green;
+}
+
+.terminal-hr {
+  color: white;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 0;
+  transition: 0.5s;
+  overflow-y: auto;
+  word-wrap: break-word;
+}
+
+.up {
+  text-align: center;
+}
+
+.up-arrow {
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.goldenCode {
+  color: goldenrod;
+  display: none;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+    display: none;
+  }
+}
+
+.active {
+  display: initial;
+  animation: fade-in ease-in-out 7s;
+}
+
+.not-active {
+  display: initial;
+  animation: fade-out ease-in-out 7s;
+}
+
+.hidden {
+  display: none;
+}
+
+.copyright-link:link,
+.copyright-link:visited {
+  text-decoration: none;
+  color: blue;
+}
+
+.copyright {
+  color: gray;
+}
+
+input[type="button"] {
+  position: relative;
+  top: -10px;
+}
+
+.dark-mode {
+  color: white;
+  background-color: black;
+}
+
+.dark-mode-button input {
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: lightgray;
+}
+
+.settings-icon,
+.settings {
+  position: fixed;
+}
+
+.settings-icon {
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  transition: transform 0.5s;
+}
+
+.settings-icon:hover {
+  transform: rotate(180deg);
+}
+
+.settings {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+  border-left: 2px solid gray;
+  height: 100%;
+  width: 0;
+  z-index: 3;
+  top: 0;
+  right: -4px;
+  transition: 0.5s;
+}
+
+.settings,
+dialog {
+  font-family: sans-serif;
+}
+
+.settings-hr {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.setting-header {
+  vertical-align: middle;
+}
+
+section button,
+dialog button {
+  border-radius: 4px;
+}
+
+section button {
+  transition: 0.1s;
+  margin: 4px;
+}
+
+.wipe {
+  border-color: #ffcccb;
+  color: red;
+}
+
+.wipe:hover {
+  border-color: red;
+}
+
+.wipe:active {
+  border-color: #8b0000;
+}
+
+.save {
+  border-color: #90ee90;
+  color: green;
+}
+
+.save:hover {
+  border-color: green;
+}
+
+.save:active {
+  border-color: #013220;
+}
+
+.save-file {
+  border-color: #add8e6;
+  color: blue;
+}
+
+.save-file:hover {
+  border-color: blue;
+}
+
+.save-file:active {
+  border-color: #00008b;
+}
+
+.load-file {
+  border-color: #f1eb9c;
+  color: #f6be00;
+}
+
+.load-file:hover {
+  border-color: yellow;
+}
+
+.load-file:active {
+  border-color: #8b8000;
+}
+
+.settings h1 {
+  margin-bottom: 20px;
+}
+
+.css-sect,
+.js-sect,
+.html-sect {
+  overflow-y: auto;
+  height: 300px;
+}
+
+.header-hr {
+  margin-top: 0;
+}
+
+dialog {
+  position: absolute;
+  border-radius: 10px;
+  width: 60%;
+  text-align: center;
+  box-shadow: 0 0 10px black;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background-color: white;
+  margin: auto;
+}
+
+dialog,
+.overlay {
+  transition: 0.5s;
+}
+
+dialog button {
+  padding: 0.25rem 0.5rem;
+  margin: 1rem;
+  transition: 0.25s;
+  box-shadow: 0 0 4px #1976d2;
+  border-color: #1976d2;
+}
+
+dialog button:hover {
+  background-color: #1976d2;
+  color: white;
+}
+
+dialog button:active {
+  box-shadow: inset;
+}
+
+.tutorial-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.tutorial-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  transition: 1s;
+  z-index: 1;
+}
+
+.tutorial-button:hover {
+  transform: rotate(360deg);
+}
