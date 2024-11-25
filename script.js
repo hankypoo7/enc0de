@@ -1,4 +1,3 @@
-// Code is Copyright Henry Lu 2022
 "use strict";
 
 // Data that changes
